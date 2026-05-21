@@ -358,7 +358,7 @@ button:active{transform:scale(.985);}
     <div class="progress-wrap">
         <div class="progress-top">
             <span>質問の進み具合</span>
-            <span id="progress-text">0 / 6</span>
+            <span id="progress-text">0 / 13</span>
         </div>
         <div class="progress-bar">
             <div class="progress-fill" id="progress-fill"></div>
@@ -398,7 +398,14 @@ const questions = [
     "小さな用事でも気軽に連絡できる",
     "沈黙があっても気まずくなりにくい",
     "相手の考え方をなんとなく理解できる",
-    "この人といると、少し安心する"
+    "この人といると、少し安心する",
+    "相手の笑い方や反応を覚えている",
+    "つい相手のことを考えてしまう時間がある",
+    "一緒にいると時間が早く感じる",
+    "相手の機嫌の変化に気づきやすい",
+    "相手に褒められるとかなり嬉しい",
+    "もし予定が合うなら会いたいと思う",
+    "なんだかんだで気になる存在だと思う"
 ];
 
 const options = [
@@ -512,7 +519,7 @@ function generate(){
     document.getElementById("score-text").innerHTML = `${score}<span>%</span>`;
     document.getElementById("score-message").innerText = getMessage(score);
     document.getElementById("tech-code").innerText = `ANS:${answers.join("-")} | KEY:${combined}`;
-    document.getElementById("tech-decode").innerText = `${decode(h1)} × ${decode(h2)}`;
+    document.getElementById("tech-decode").innerText = `${None}`;
 
     document.getElementById("score-circle").style.setProperty("--score", score);
 
