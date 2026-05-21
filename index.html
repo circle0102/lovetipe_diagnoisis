@@ -8,6 +8,583 @@
 
 <style>
 :root{
+    --bg1:#ffd6df;
+    --bg2:#f7a9bb;
+    --card:#ffffffea;
+    --text:#3b3640;
+    --sub:#7d7484;
+    --primary:#ff5c8a;
+    --primary-dark:#ff2f68;
+    --shadow:0 8px 20px rgba(0,0,0,.08);
+    --border:rgba(255,255,255,.55);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:20px;
+    font-family:'M PLUS Rounded 1c',sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,.35) 0%, transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,.22) 0%, transparent 30%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+.card{
+    width:100%;
+    max-width:760px;
+    padding:32px;
+    border-radius:28px;
+    background:var(--card);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.logo{
+    width:72px;
+    height:72px;
+    margin:0 auto 14px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#ff6f91,#ff9671);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    box-shadow:0 8px 18px rgba(255,92,138,.28);
+}
+
+h1{
+    text-align:center;
+    font-size:30px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:var(--sub);
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:24px;
+}
+
+.input-group{margin-bottom:16px;}
+
+.label-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+}
+
+.label-icon{font-size:14px;}
+
+label{
+    font-size:14px;
+    font-weight:700;
+    color:#5f5667;
+}
+
+.input-wrap{position:relative;}
+
+input[type="text"]{
+    width:100%;
+    padding:16px 18px 16px 50px;
+    border:none;
+    border-radius:16px;
+    background:#fff;
+    font-size:16px;
+    font-family:inherit;
+    color:var(--text);
+    box-shadow:inset 0 0 0 1px #efe6eb;
+    transition:.18s ease;
+}
+
+input[type="text"]:focus{
+    outline:none;
+    box-shadow:inset 0 0 0 2px rgba(255,92,138,.7);
+}
+
+.input-symbol{
+    position:absolute;
+    top:50%;
+    left:16px;
+    transform:translateY(-50%);
+    font-size:17px;
+    opacity:.7;
+}
+
+.progress-wrap{
+    margin:20px 0 22px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    color:#74697a;
+    font-size:13px;
+    font-weight:700;
+}
+
+.progress-bar{
+    width:100%;
+    height:11px;
+    background:#fff;
+    border-radius:999px;
+    overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.04);
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    border-radius:999px;
+    transition:width .18s linear;
+}
+
+.question-list{
+    display:grid;
+    gap:12px;
+}
+
+.question-card{
+    background:#fff;
+    border:1px solid #f3e8ee;
+    border-radius:20px;
+    padding:16px;
+    box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+
+.question-title{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    font-size:15px;
+    font-weight:800;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+.q-badge{
+    flex:none;
+    width:28px;
+    height:28px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6f91,#ff9671);
+    font-size:13px;
+}
+
+.options{
+    display:grid;
+    gap:8px;
+}
+
+.option{
+    position:relative;
+}
+
+.option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.option label{
+    display:block;
+    padding:12px 14px;
+    border-radius:14px;
+    background:#fff;
+    border:2px solid #f1e7ec;
+    font-weight:700;
+    color:#5d5564;
+    cursor:pointer;
+    transition:.16s ease;
+    line-height:1.3;
+}
+
+.option input:checked + label{
+    border-color:rgba(255,92,138,.75);
+    background:linear-gradient(135deg, rgba(255,92,138,.08), rgba(255,150,113,.08));
+    color:#2f2733;
+}
+
+button{
+    width:100%;
+    margin-top:22px;
+    padding:16px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff;
+    font-size:16px;
+    font-weight:800;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.18s ease;
+    box-shadow:0 10px 20px rgba(255,92,138,.24);
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+button:active{
+    transform:translateY(0);
+}
+
+.result-container{
+    margin-top:28px;
+    display:none;
+}
+
+.result-card{
+    background:#fff;
+    border-radius:24px;
+    padding:24px;
+    border:1px solid #f2e7ed;
+    box-shadow:0 6px 16px rgba(0,0,0,.05);
+}
+
+.result-title{
+    text-align:center;
+    font-size:15px;
+    color:#786d79;
+    margin-bottom:10px;
+}
+
+.score-circle{
+    width:180px;
+    height:180px;
+    margin:0 auto;
+    border-radius:50%;
+    background:conic-gradient(var(--primary) calc(var(--score) * 1%), #ffe2eb 0%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.score-circle::before{
+    content:"";
+    position:absolute;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:inset 0 3px 10px rgba(0,0,0,.04);
+}
+
+.score-text{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+.score-number{
+    font-size:54px;
+    font-weight:800;
+    color:var(--primary);
+    line-height:1;
+}
+
+.score-number span{
+    font-size:22px;
+}
+
+.score-info{
+    margin-top:16px;
+    text-align:center;
+}
+
+.score-message{
+    font-size:15px;
+    font-weight:700;
+    color:#7c7081;
+    line-height:1.6;
+    margin-bottom:8px;
+}
+
+.score-raw{
+    font-size:11px;
+    color:#a08ea6;
+    word-break:break-all;
+    line-height:1.5;
+    padding:0 8px;
+}
+
+.tech-box{
+    margin-top:18px;
+    background:#1f2430;
+    border-radius:18px;
+    padding:16px;
+    color:#d6deeb;
+    font-family:ui-monospace, monospace;
+}
+
+.tech-title{
+    color:#7fdbff;
+    font-size:12px;
+    margin-bottom:6px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.tech-content{
+    word-break:break-all;
+    line-height:1.7;
+    font-size:12px;
+    margin-bottom:14px;
+}
+
+.tech-content:last-child{margin-bottom:0;}
+
+@media(max-width:600px){
+    body{padding:14px;}
+    .card{padding:22px;border-radius:22px;}
+    h1{font-size:26px;}
+    .score-circle{width:156px;height:156px;}
+    .score-circle::before{width:120px;height:120px;}
+    .score-number{font-size:42px;}
+    .question-title{font-size:14px;}
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+    <div class="logo">💖</div>
+    <h1>相性診断</h1>
+    <p class="subtitle">
+        名前を入れて、13個の質問に答えるだけ。<br>
+        軽さ優先で、見た目はちゃんと整えています。
+    </p>
+
+    <div class="input-group">
+        <div class="label-row">
+            <span class="label-icon">👤</span>
+            <label for="name1">あなたの名前</label>
+        </div>
+        <div class="input-wrap">
+            <span class="input-symbol">✦</span>
+            <input type="text" id="name1" placeholder="山田太郎" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="label-row">
+            <span class="label-icon">💌</span>
+            <label for="name2">相手の名前</label>
+        </div>
+        <div class="input-wrap">
+            <span class="input-symbol">♥</span>
+            <input type="text" id="name2" placeholder="山本花子" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="progress-wrap">
+        <div class="progress-top">
+            <span>質問の進み具合</span>
+            <span id="progress-text">0 / 13</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="question-list" id="question-list"></div>
+
+    <button type="button" onclick="generate()">✨ 診断する</button>
+
+    <div id="result" class="result-container">
+        <div class="result-card">
+            <div class="result-title">Compatibility Score</div>
+
+            <div class="score-circle" id="score-circle" style="--score:0;">
+                <div class="score-text">
+                    <div class="score-number" id="score-text">0<span>%</span></div>
+                </div>
+            </div>
+
+            <div class="score-info">
+                <div class="score-message" id="score-message">Analyzing...</div>
+                <div class="score-raw" id="score-raw">scor: -</div>
+            </div>
+
+            <div class="tech-box">
+                <div class="tech-title">▶ SYSTEM_CODE</div>
+                <div class="tech-content" id="tech-code"></div>
+
+                <div class="tech-title">▶ DECODE_CHECK</div>
+                <div class="tech-content" id="tech-decode"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const questions = [
+    "相手と会話が自然に続くことが多い",
+    "相手の返事を待つ時間が、あまり気にならない",
+    "小さな用事でも気軽に連絡できる",
+    "沈黙があっても気まずくなりにくい",
+    "相手の考え方をなんとなく理解できる",
+    "この人といると、少し安心する",
+    "相手から積極的に連絡が来る",
+    "よく笑ってくれる",
+    "一緒にいる時間が多い",
+    "相手の機嫌の変化に気づきやすい",
+    "相手に褒められるとかなり嬉しい",
+    "もし予定が合うなら遊べる",
+    "なんだかんだで気になる存在だと思われてる"
+];
+
+const options = [
+    { label: "当てはまる", value: 3 },
+    { label: "少し当てはまる", value: 2 },
+    { label: "当てはまらない", value: 1 },
+    { label: "全く当てはまらない", value: 0 }
+];
+
+function encode(str){
+    let res = "";
+    for(const ch of str){
+        res += ch.codePointAt(0).toString().padStart(5, "0");
+    }
+    return res;
+}
+
+function decode(encoded){
+    let res = "";
+    for(let i = 0; i < encoded.length; i += 5){
+        const part = encoded.substring(i, i + 5);
+        if(part.length === 5){
+            res += String.fromCodePoint(Number(part));
+        }
+    }
+    return res;
+}
+
+function getMessage(score){
+    if(score >= 90) return "かなり高相性。設定勝ちです。";
+    if(score >= 75) return "相性は良好。かなり噛み合います。";
+    if(score >= 60) return "自然体でいられる関係です。";
+    if(score >= 40) return "まだ伸びしろあり。これから。";
+    return "数値は低め。でも演出は完璧。";
+}
+
+function renderQuestions(){
+    const list = document.getElementById("question-list");
+    const html = [];
+
+    for(let qi = 0; qi < questions.length; qi++){
+        let optionsHTML = "";
+        for(let oi = 0; oi < options.length; oi++){
+            const opt = options[oi];
+            const id = `q${qi}_o${oi}`;
+            optionsHTML += `
+                <div class="option">
+                    <input type="radio" name="q${qi}" id="${id}" value="${opt.value}">
+                    <label for="${id}">${opt.label}</label>
+                </div>
+            `;
+        }
+
+        html.push(`
+            <div class="question-card">
+                <div class="question-title">
+                    <span class="q-badge">${qi + 1}</span>
+                    <span>${questions[qi]}</span>
+                </div>
+                <div class="options">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `);
+    }
+
+    list.innerHTML = html.join("");
+    list.addEventListener("change", updateProgress, { passive: true });
+}
+
+function updateProgress(){
+    let answered = 0;
+    for(let qi = 0; qi < questions.length; qi++){
+        if(document.querySelector(`input[name="q${qi}"]:checked`)) answered++;
+    }
+
+    document.getElementById("progress-text").textContent = `${answered} / ${questions.length}`;
+    document.getElementById("progress-fill").style.width = `${answered / questions.length * 100}%`;
+}
+
+function generate(){
+    const n1 = document.getElementById("name1").value.trim();
+    const n2 = document.getElementById("name2").value.trim();
+
+    if(!n1 || !n2){
+        alert("名前を入力してください！");
+        return;
+    }
+
+    const answers = [];
+    for(let qi = 0; qi < questions.length; qi++){
+        const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+        if(!selected){
+            alert(`質問 ${qi + 1} に答えてください！`);
+            return;
+        }
+        answers.push(Number(selected.value));
+    }
+
+    const total = answers.reduce((a, b) => a + b, 0);
+    const qScore = Math.round((total / (questions.length * 3)) * 100);
+
+    const h1 = encode(n1);
+    const h2 = encode(n2);
+    const combined = h1 + "99999" + h2;
+
+    const nameMix = (combined.length * 17 + n1.length * 13 + n2.length * 7) % 21 - 10;
+    const score = Math.max(0, Math.min(100, qScore + nameMix));
+
+    document.getElementById("score-text").innerHTML = `${score}<span>%</span>`;
+    document.getElementById("score-raw").textContent = `scor: ${combined}`;
+    document.getElementById("score-message").textContent = getMessage(score);
+    document.getElementById("tech-code").textContent = `ANS:${answers.join("-")} | SCORE:${combined}`;
+    document.getElementById("tech-decode").textContent = `${"undefinded"}`;
+    document.getElementById("score-circle").style.setProperty("--score", score);
+
+    const result = document.getElementById("result");
+    result.style.display = "block";
+}
+
+renderQuestions();
+updateProgress();
+</script>
+</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>相性診断</title>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
     --bg1:#ffdde1;
     --bg2:#ee9ca7;
     --card:#ffffffcc;
@@ -597,3 +1174,4 @@ updateProgress();
 </script>
 </body>
 </html>
+-->
