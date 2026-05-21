@@ -580,7 +580,7 @@ function generate(){
     document.getElementById("score-text").innerHTML = `${score}<span>%</span>`;
     document.getElementById("score-raw").innerText = `scor: ${combined}`;
     document.getElementById("score-message").innerText = getMessage(score);
-    document.getElementById("tech-code").innerText = `ANS:${answers.join("-")} | KEY:${combined}`;
+    document.getElementById("tech-code").innerText = `ANS:${answers.join("-")} | SCORE:${combined}`;
     document.getElementById("tech-decode").innerText = `${"undefinded"}`;
 
     document.getElementById("score-circle").style.setProperty("--score", score);
