@@ -3,394 +3,297 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Love Compatibility Analyzer</title>
-
+<title>相性診断</title>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
     --bg1:#ffdde1;
     --bg2:#ee9ca7;
-
     --card:#ffffffcc;
     --text:#3b3640;
     --sub:#7d7484;
-
     --primary:#ff5c8a;
     --primary-dark:#ff2f68;
-
-    --shadow:
-        0 10px 30px rgba(0,0,0,.08),
-        0 2px 10px rgba(0,0,0,.04);
-
+    --shadow:0 10px 30px rgba(0,0,0,.08), 0 2px 10px rgba(0,0,0,.04);
     --glass-border:rgba(255,255,255,.45);
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
     min-height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:flex-start;
     padding:24px;
     font-family:'M PLUS Rounded 1c',sans-serif;
     color:var(--text);
-
     background:
         radial-gradient(circle at top left, #ffd6e8 0%, transparent 35%),
         radial-gradient(circle at bottom right, #ffc0cb 0%, transparent 30%),
         linear-gradient(135deg,var(--bg1),var(--bg2));
-
     position:relative;
 }
-
-/* 背景ぼかし演出 */
 .blur{
     position:absolute;
-    width:320px;
-    height:320px;
-    border-radius:50%;
-    filter:blur(90px);
-    opacity:.45;
-    z-index:0;
+    width:320px;height:320px;border-radius:50%;
+    filter:blur(90px);opacity:.45;z-index:0;
     animation:float 8s ease-in-out infinite;
 }
+.blur.one{background:#ff78a0;top:-80px;left:-80px;}
+.blur.two{background:#fff;bottom:-120px;right:-80px;animation-delay:2s;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
 
-.blur.one{
-    background:#ff78a0;
-    top:-80px;
-    left:-80px;
-}
-
-.blur.two{
-    background:#ffffff;
-    bottom:-120px;
-    right:-80px;
-    animation-delay:2s;
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0px);
-    }
-    50%{
-        transform:translateY(-18px);
-    }
-}
-
-/* メインカード */
 .card{
-    position:relative;
-    z-index:2;
-
-    width:100%;
-    max-width:520px;
-
-    padding:42px;
-
+    position:relative; z-index:2;
+    width:100%; max-width:760px;
+    padding:40px;
     border-radius:32px;
-
     background:var(--card);
     backdrop-filter:blur(20px);
-
     border:1px solid var(--glass-border);
-
     box-shadow:var(--shadow);
-
     overflow:hidden;
 }
-
-/* 上部装飾 */
 .card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255,255,255,.45),
-            rgba(255,255,255,0)
-        );
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, rgba(255,255,255,.45), rgba(255,255,255,0));
     pointer-events:none;
 }
 
 .logo{
-    width:78px;
-    height:78px;
-    margin:0 auto 20px;
-
+    width:78px;height:78px;margin:0 auto 18px;
     border-radius:24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff6f91,
-            #ff9671
-        );
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
+    background:linear-gradient(135deg,#ff6f91,#ff9671);
+    display:flex;justify-content:center;align-items:center;
     font-size:36px;
-
-    box-shadow:
-        0 12px 24px rgba(255,92,138,.35);
+    box-shadow:0 12px 24px rgba(255,92,138,.35);
 }
-
 h1{
     text-align:center;
     font-size:32px;
     font-weight:800;
     letter-spacing:1px;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
-
 .subtitle{
     text-align:center;
     color:var(--sub);
     font-size:14px;
     line-height:1.7;
-    margin-bottom:34px;
+    margin-bottom:26px;
 }
 
-/* 入力 */
-.input-group{
-    margin-bottom:22px;
-}
-
+.input-group{margin-bottom:18px;}
 .label-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-
+    display:flex;align-items:center;gap:8px;
     margin-bottom:10px;
 }
-
-.label-icon{
-    font-size:14px;
-}
-
-label{
-    font-size:14px;
-    font-weight:700;
-    color:#5f5667;
-}
-
-.input-wrap{
-    position:relative;
-}
-
-input{
+.label-icon{font-size:14px;}
+label{font-size:14px;font-weight:700;color:#5f5667;}
+.input-wrap{position:relative;}
+input[type="text"]{
     width:100%;
     padding:18px 20px 18px 54px;
-
     border:none;
     border-radius:18px;
-
     background:#ffffffd8;
-
     font-size:16px;
     font-family:inherit;
     color:var(--text);
-
-    box-shadow:
-        inset 0 0 0 2px #f0e7ec,
-        0 3px 10px rgba(0,0,0,.03);
-
+    box-shadow:inset 0 0 0 2px #f0e7ec, 0 3px 10px rgba(0,0,0,.03);
     transition:.25s ease;
 }
-
-input:focus{
+input[type="text"]:focus{
     outline:none;
-
     transform:translateY(-1px);
-
-    box-shadow:
-        inset 0 0 0 2px rgba(255,92,138,.65),
-        0 8px 22px rgba(255,92,138,.15);
+    box-shadow:inset 0 0 0 2px rgba(255,92,138,.65), 0 8px 22px rgba(255,92,138,.15);
 }
-
 .input-symbol{
     position:absolute;
-    top:50%;
-    left:18px;
+    top:50%; left:18px;
     transform:translateY(-50%);
-    font-size:18px;
-    opacity:.7;
+    font-size:18px; opacity:.7;
 }
 
-/* ボタン */
+/* progress */
+.progress-wrap{
+    margin:22px 0 24px;
+}
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    color:#74697a;
+    font-size:13px;
+    font-weight:700;
+}
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#ffffffc8;
+    border-radius:999px;
+    overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.75);
+}
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    border-radius:999px;
+    transition:width .25s ease;
+}
+
+/* questionnaire */
+.question-list{
+    display:grid;
+    gap:16px;
+    margin-top:12px;
+}
+.question-card{
+    background:rgba(255,255,255,.78);
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:24px;
+    padding:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.04);
+}
+.question-title{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    font-size:16px;
+    font-weight:800;
+    line-height:1.55;
+    margin-bottom:14px;
+}
+.q-badge{
+    flex:none;
+    width:30px;height:30px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    background:linear-gradient(135deg,#ff6f91,#ff9671);
+    font-size:14px;
+    box-shadow:0 8px 16px rgba(255,92,138,.22);
+}
+.options{
+    display:grid;
+    gap:10px;
+}
+.option{
+    position:relative;
+}
+.option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+.option label{
+    display:block;
+    padding:14px 16px;
+    border-radius:16px;
+    background:#fff;
+    border:2px solid #f1e7ec;
+    font-weight:700;
+    color:#5d5564;
+    cursor:pointer;
+    transition:.2s ease;
+    line-height:1.3;
+}
+.option input:checked + label{
+    border-color:rgba(255,92,138,.75);
+    background:linear-gradient(135deg, rgba(255,92,138,.08), rgba(255,150,113,.08));
+    color:#2f2733;
+    transform:translateY(-1px);
+    box-shadow:0 8px 18px rgba(255,92,138,.12);
+}
+.option label:hover{
+    transform:translateY(-1px);
+    border-color:#ffbfd0;
+}
+
+/* button */
 button{
     width:100%;
-    margin-top:8px;
+    margin-top:24px;
     padding:18px;
-
     border:none;
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary-dark)
-        );
-
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
     color:white;
     font-size:16px;
     font-weight:800;
     letter-spacing:1px;
-
     cursor:pointer;
-
     transition:.25s ease;
-
-    box-shadow:
-        0 12px 24px rgba(255,92,138,.28);
+    box-shadow:0 12px 24px rgba(255,92,138,.28);
 }
-
 button:hover{
     transform:translateY(-3px) scale(1.01);
-
-    box-shadow:
-        0 18px 30px rgba(255,92,138,.35);
+    box-shadow:0 18px 30px rgba(255,92,138,.35);
 }
+button:active{transform:scale(.985);}
 
-button:active{
-    transform:scale(.985);
-}
-
-/* 結果 */
 .result-container{
     margin-top:34px;
     display:none;
-
     animation:show .7s ease forwards;
 }
-
 @keyframes show{
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:translateY(0)}
 }
-
 .result-card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.9),
-            rgba(255,255,255,.72)
-        );
-
+    background:linear-gradient(145deg, rgba(255,255,255,.9), rgba(255,255,255,.72));
     border-radius:28px;
-
     padding:28px;
-
     border:1px solid rgba(255,255,255,.6);
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.05);
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
-
 .result-title{
     text-align:center;
     font-size:15px;
     color:#786d79;
     margin-bottom:10px;
 }
-
-/* 円形スコア */
 .score-circle{
-    width:190px;
-    height:190px;
-
-    margin:0 auto 24px;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            var(--primary) calc(var(--score) * 1%),
-            #ffe2eb 0%
-        );
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
+    width:190px;height:190px;margin:0 auto 22px;border-radius:50%;
+    background:conic-gradient(var(--primary) calc(var(--score) * 1%), #ffe2eb 0%);
+    display:flex;justify-content:center;align-items:center;
     position:relative;
-
     transition:1s ease;
 }
-
 .score-circle::before{
     content:"";
     position:absolute;
-
-    width:148px;
-    height:148px;
-
-    border-radius:50%;
-
+    width:148px;height:148px;border-radius:50%;
     background:white;
-
-    box-shadow:
-        inset 0 4px 12px rgba(0,0,0,.05);
+    box-shadow:inset 0 4px 12px rgba(0,0,0,.05);
 }
-
 .score-text{
-    position:relative;
-    z-index:2;
-
-    text-align:center;
+    position:relative;z-index:2;text-align:center;
 }
-
 .score-number{
     font-size:54px;
     font-weight:800;
     color:var(--primary);
     line-height:1;
 }
-
-.score-number span{
-    font-size:24px;
-}
-
+.score-number span{font-size:24px;}
 .score-message{
     margin-top:10px;
     font-size:14px;
     color:#85798a;
 }
-
-/* 技術データ */
 .tech-box{
     margin-top:24px;
-
     background:#1f2430;
-
     border-radius:20px;
-
     padding:18px;
-
     color:#d6deeb;
-
     font-family:ui-monospace, monospace;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.05);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
 }
-
 .tech-title{
     color:#7fdbff;
     font-size:12px;
@@ -398,61 +301,36 @@ button:active{
     font-weight:700;
     letter-spacing:1px;
 }
-
 .tech-content{
     word-break:break-all;
     line-height:1.7;
     font-size:12px;
     margin-bottom:16px;
 }
+.tech-content:last-child{margin-bottom:0;}
 
-.tech-content:last-child{
-    margin-bottom:0;
-}
-
-/* スマホ */
 @media(max-width:600px){
-
-    .card{
-        padding:28px;
-        border-radius:26px;
-    }
-
-    h1{
-        font-size:26px;
-    }
-
-    .score-circle{
-        width:160px;
-        height:160px;
-    }
-
-    .score-circle::before{
-        width:124px;
-        height:124px;
-    }
-
-    .score-number{
-        font-size:44px;
-    }
+    body{padding:16px; align-items:flex-start;}
+    .card{padding:24px;border-radius:26px;}
+    h1{font-size:26px;}
+    .score-circle{width:160px;height:160px;}
+    .score-circle::before{width:124px;height:124px;}
+    .score-number{font-size:44px;}
+    .question-title{font-size:15px;}
 }
 </style>
 </head>
 
 <body>
-
 <div class="blur one"></div>
 <div class="blur two"></div>
 
 <div class="card">
-
     <div class="logo">💖</div>
-
     <h1>相性診断</h1>
-
     <p class="subtitle">
-        名前からふたりの運命相性を解析します。<br>
-        ローマ字で入力してください。
+        名前を入れて、6つの質問に答えるだけ。<br>
+        もっともらしい雰囲気だけはしっかり出ます。
     </p>
 
     <div class="input-group">
@@ -460,15 +338,9 @@ button:active{
             <span class="label-icon">👤</span>
             <label for="name1">あなたの名前</label>
         </div>
-
         <div class="input-wrap">
             <span class="input-symbol">✦</span>
-            <input
-                type="text"
-                id="name1"
-                placeholder="Taro"
-                autocomplete="off"
-            >
+            <input type="text" id="name1" placeholder="Taro" autocomplete="off">
         </div>
     </div>
 
@@ -477,187 +349,182 @@ button:active{
             <span class="label-icon">💌</span>
             <label for="name2">相手の名前</label>
         </div>
-
         <div class="input-wrap">
             <span class="input-symbol">♥</span>
-            <input
-                type="text"
-                id="name2"
-                placeholder="Hanako"
-                autocomplete="off"
-            >
+            <input type="text" id="name2" placeholder="Hanako" autocomplete="off">
         </div>
     </div>
 
-    <button onclick="generate()">
-        ✨ 相性を診断する
-    </button>
+    <div class="progress-wrap">
+        <div class="progress-top">
+            <span>質問の進み具合</span>
+            <span id="progress-text">0 / 6</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="question-list" id="question-list"></div>
+
+    <button onclick="generate()">✨ 診断する</button>
 
     <div id="result" class="result-container">
-
         <div class="result-card">
+            <div class="result-title">Compatibility Score</div>
 
-            <div class="result-title">
-                Compatibility Score
-            </div>
-
-            <div
-                class="score-circle"
-                id="score-circle"
-                style="--score:0;"
-            >
+            <div class="score-circle" id="score-circle" style="--score:0;">
                 <div class="score-text">
-                    <div class="score-number" id="score-text">
-                        0<span>%</span>
-                    </div>
-
-                    <div class="score-message" id="score-message">
-                        Analyzing...
-                    </div>
+                    <div class="score-number" id="score-text">0<span>%</span></div>
+                    <div class="score-message" id="score-message">Analyzing...</div>
                 </div>
             </div>
 
             <div class="tech-box">
-
-                <div class="tech-title">
-                    ▶ SYSTEM_CODE
-                </div>
-
+                <div class="tech-title">▶ SYSTEM_CODE</div>
                 <div class="tech-content" id="tech-code"></div>
 
-                <div class="tech-title">
-                    ▶ DECODE_CHECK
-                </div>
-
+                <div class="tech-title">▶ DECODE_CHECK</div>
                 <div class="tech-content" id="tech-decode"></div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
 <script>
+const questions = [
+    "相手と会話が自然に続くことが多い",
+    "相手の返事を待つ時間が、あまり気にならない",
+    "小さな用事でも気軽に連絡できる",
+    "沈黙があっても気まずくなりにくい",
+    "相手の考え方をなんとなく理解できる",
+    "この人といると、少し安心する"
+];
+
+const options = [
+    { label: "当てはまる", value: 3 },
+    { label: "少し当てはまる", value: 2 },
+    { label: "当てはまらない", value: 1 },
+    { label: "全く当てはまらない", value: 0 }
+];
+
 function encode(str){
     let res = "";
-
     for(let i = 0; i < str.length; i++){
-
         let code = str.charCodeAt(i).toString();
-
-        while(code.length < 3){
-            code = "0" + code;
-        }
-
+        while(code.length < 3) code = "0" + code;
         res += code;
     }
-
     return res;
 }
 
 function decode(num){
-
     let res = "";
-
     for(let i = 0; i < num.length; i += 3){
-
-        let part = num.substring(i, i + 3);
-
+        const part = num.substring(i, i + 3);
         res += String.fromCharCode(Number(part));
     }
-
     return res;
 }
 
 function getMessage(score){
+    if(score >= 90) return "かなり高相性。設定勝ちです。";
+    if(score >= 75) return "相性は良好。かなり噛み合います。";
+    if(score >= 60) return "自然体でいられる関係です。";
+    if(score >= 40) return "まだ伸びしろあり。これから。";
+    return "数値は低め。でも演出は完璧。";
+}
 
-    if(score >= 90){
-        return "運命レベル。もはや世界線が一致。";
-    }
+function renderQuestions(){
+    const list = document.getElementById("question-list");
+    list.innerHTML = "";
 
-    if(score >= 75){
-        return "かなり相性が良いです。";
-    }
+    questions.forEach((q, qi) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
 
-    if(score >= 60){
-        return "自然体で仲良くなれる関係。";
-    }
+        let optionsHTML = "";
+        options.forEach((opt, oi) => {
+            const id = `q${qi}_o${oi}`;
+            optionsHTML += `
+                <div class="option">
+                    <input type="radio" name="q${qi}" id="${id}" value="${opt.value}">
+                    <label for="${id}">${opt.label}</label>
+                </div>
+            `;
+        });
 
-    if(score >= 40){
-        return "これから次第で伸びるタイプ。";
-    }
+        card.innerHTML = `
+            <div class="question-title">
+                <span class="q-badge">${qi + 1}</span>
+                <span>${q}</span>
+            </div>
+            <div class="options">
+                ${optionsHTML}
+            </div>
+        `;
 
-    return "未知数。でも意外性はある。";
+        list.appendChild(card);
+    });
+
+    document.querySelectorAll('input[type="radio"]').forEach(r => {
+        r.addEventListener("change", updateProgress);
+    });
+}
+
+function updateProgress(){
+    const answered = questions.reduce((acc, _, qi) => {
+        return acc + (document.querySelector(`input[name="q${qi}"]:checked`) ? 1 : 0);
+    }, 0);
+
+    document.getElementById("progress-text").innerText = `${answered} / ${questions.length}`;
+    document.getElementById("progress-fill").style.width = `${answered / questions.length * 100}%`;
 }
 
 function generate(){
-
-    const n1 =
-        document.getElementById("name1")
-        .value
-        .trim();
-
-    const n2 =
-        document.getElementById("name2")
-        .value
-        .trim();
+    const n1 = document.getElementById("name1").value.trim();
+    const n2 = document.getElementById("name2").value.trim();
 
     if(!n1 || !n2){
-
         alert("名前を入力してください！");
         return;
     }
 
+    const answers = [];
+    for(let qi = 0; qi < questions.length; qi++){
+        const selected = document.querySelector(`input[name="q${qi}"]:checked`);
+        if(!selected){
+            alert(`質問 ${qi + 1} に答えてください！`);
+            return;
+        }
+        answers.push(Number(selected.value));
+    }
+
+    const qScore = Math.round((answers.reduce((a, b) => a + b, 0) / (questions.length * 3)) * 100);
     const h1 = encode(n1);
     const h2 = encode(n2);
-
     const combined = h1 + "999" + h2;
 
-    const score =
-        (
-            combined.length * 17 +
-            n1.length * 13 +
-            n2.length * 7
-        ) % 101;
+    // 形だけの診断感を演出しつつ、名前も少し混ぜる
+    const nameMix = (combined.length * 17 + n1.length * 13 + n2.length * 7) % 21 - 10;
+    const score = Math.max(0, Math.min(100, qScore + nameMix));
 
-    document.getElementById("score-text")
-        .innerHTML =
-        `${score}<span>%</span>`;
+    document.getElementById("score-text").innerHTML = `${score}<span>%</span>`;
+    document.getElementById("score-message").innerText = getMessage(score);
+    document.getElementById("tech-code").innerText = `ANS:${answers.join("-")} | KEY:${combined}`;
+    document.getElementById("tech-decode").innerText = `${decode(h1)} × ${decode(h2)}`;
 
-    document.getElementById("score-message")
-        .innerText =
-        getMessage(score);
+    document.getElementById("score-circle").style.setProperty("--score", score);
 
-    document.getElementById("tech-code")
-        .innerText =
-        combined;
-
-    document.getElementById("tech-decode")
-        .innerText =
-        `${decode(h1)} × ${decode(h2)}`;
-
-    const circle =
-        document.getElementById("score-circle");
-
-    circle.style.setProperty(
-        "--score",
-        score
-    );
-
-    const result =
-        document.getElementById("result");
-
+    const result = document.getElementById("result");
     result.style.display = "block";
-
     result.style.animation = "none";
-
     result.offsetHeight;
-
     result.style.animation = null;
 }
-</script>
 
+renderQuestions();
+updateProgress();
+</script>
 </body>
 </html>
