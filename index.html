@@ -553,7 +553,7 @@ function generate(){
 
     const h1 = encode(n1);
     const h2 = encode(n2);
-    const combined = h1 + "99999" + h2;
+    const combined = h1 + "9981099" + h2;
 
     const nameMix = (combined.length * 17 + n1.length * 13 + n2.length * 7) % 21 - 10;
     const score = Math.max(0, Math.min(100, qScore + nameMix));
